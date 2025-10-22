@@ -5,21 +5,21 @@ import os
 import re
 from typing import Optional
 
-# Load environment variables
+# Load environment variables and set Streamlit page config first
 load_dotenv()
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    st.set_page_config(page_title="AI Home Loan Assistant", page_icon="🏠")
-    st.title("🏠 AI Home Loan Assistant")
-    st.warning("OPENAI_API_KEY not found. Please add your API key to the .env file and restart the app.")
-    # Continue in offline mode if no API key
-    client = None
-else:
-    client = OpenAI(api_key=api_key)
-
 st.set_page_config(page_title="AI Home Loan Assistant", page_icon="🏠")
+
+# OpenAI client (optional)
+api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=api_key) if api_key else None
+
+# App header
 st.title("🏠 AI Home Loan Assistant")
 st.write("Ask me anything about home loans, interest rates, or the home buying process in South Africa.")
+
+# Warn if no API key (online mode optional)
+if client is None:
+    st.info("Running without an OpenAI API key — Online mode is disabled. You can still use Offline mode for affordability estimates and FAQs.")
 
 # Sidebar controls
 st.sidebar.header("Settings")
