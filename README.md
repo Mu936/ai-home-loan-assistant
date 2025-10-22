@@ -1,4 +1,5 @@
 # 🏠 AI Home Loan Assistant (South Africa)
+Live Link:https://ai-home-loan-assistant-irnxzkyfywiuiltfyrgaru.streamlit.app/
 
 A simple Streamlit app where you can ask home-loan questions and get clear answers. It supports:
 - Online mode (OpenAI GPT-4o-mini)
